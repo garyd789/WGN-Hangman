@@ -26,6 +26,5 @@
     <string name="X">X</string>
     <string name="Y">Y</string>
     <string name="Z">Z</string>
-    <string name="enter">ENTER</string>
-    <string name="delete">DEL</string>
+    <string name="new_game">NEW GAME</string>
 </resources>

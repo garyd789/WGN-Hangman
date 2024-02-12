@@ -46,9 +46,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Game"
+        android:text="@string/new_game"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/letters_fragment_container" />
+        app:layout_constraintTop_toBottomOf="@+id/letters_fragment_container"
+        app:backgroundTint="#708cb3"
+        style="@style/Widget.AppCompat.Button"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
