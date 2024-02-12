@@ -18,65 +18,80 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/editTextText"
+            android:id="@+id/letter_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="text"
-            android:text="" />
+            android:inputType="none"
+            android:focusable="false"
+            android:clickable="false"
+            android:cursorVisible="false" />
 
         <EditText
-            android:id="@+id/editTextText2"
+            android:id="@+id/letter_two"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="text"
-            android:text="" />
+            android:inputType="none"
+            android:focusable="false"
+            android:clickable="false"
+            android:cursorVisible="false"/>
 
         <EditText
-            android:id="@+id/editTextText3"
+            android:id="@+id/letter_three"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="text"
-            android:text="" />
+            android:inputType="none"
+            android:focusable="false"
+            android:clickable="false"
+            android:cursorVisible="false" />
 
         <EditText
-            android:id="@+id/editTextText4"
+            android:id="@+id/letter_four"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="text"
-            android:text="" />
+            android:inputType="none"
+            android:focusable="false"
+            android:clickable="false"
+            android:cursorVisible="false" />
 
         <EditText
-            android:id="@+id/editTextText5"
+            android:id="@+id/letter_five"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="text"
-            android:text="" />
+            android:inputType="none"
+            android:focusable="false"
+            android:clickable="false"
+            android:cursorVisible="false"/>
 
         <EditText
-            android:id="@+id/editTextText6"
+            android:id="@+id/letter_six"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="text"
-            android:text="" />
+            android:inputType="none"
+            android:focusable="false"
+            android:clickable="false"
+            android:cursorVisible="false"/>
 
         <EditText
-            android:id="@+id/editTextText7"
+            android:id="@+id/letter_seven"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="text"/>
+            android:inputType="none"
+            android:focusable="false"
+            android:clickable="false"
+            android:cursorVisible="false"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

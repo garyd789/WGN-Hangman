@@ -23,6 +23,8 @@ class LettersFragment : Fragment() {
         binding =
             LettersBinding.inflate(layoutInflater, container, false)
         return binding.root
+
+        binding.AButton
     }
 
 }

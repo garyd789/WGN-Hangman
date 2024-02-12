@@ -23,5 +23,9 @@ class WordFragment : Fragment() {
         binding =
             WordBinding.inflate(layoutInflater, container, false)
         return binding.root
+
+
+
+
     }
 }
