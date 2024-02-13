@@ -41,7 +41,6 @@
         android:padding="10sp"/>
 
     <!--  word fragment  -->
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/hint_fragment_container"
         android:name="com.example.hangman.WordFragment"
@@ -54,6 +53,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintWidth_percent="0.60"
+        tools:context=".MainActivity" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/hint_fragment_Button"
+        android:name="com.example.hangman.HintFragment"
+        android:layout_width="289dp"
+        android:layout_height="65dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.20"
+        app:layout_constraintHorizontal_bias="0.009"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.832"
         app:layout_constraintWidth_percent="0.60"
         tools:context=".MainActivity" />
 
@@ -70,24 +84,5 @@
         app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!--    <Button-->
-<!--        style="@style/Widget.AppCompat.Button"-->
-<!--        android:id="@+id/hintButton"-->
-<!--        android:layout_width="89dp"-->
-<!--        android:layout_height="47dp"-->
-<!--        android:layout_marginTop="56dp"-->
-<!--        android:text="Hint"-->
-<!--        app:backgroundTint="#708cb3"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/letters_fragment_container"-->
-<!--        tools:layout_editor_absoluteX="16dp" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/HintText"-->
-<!--        android:layout_width="189dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:layout_marginTop="56dp"-->
-<!--        android:text="HintText"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/letters_fragment_container"-->
-<!--        tools:layout_editor_absoluteX="105dp" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

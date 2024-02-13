@@ -37,7 +37,6 @@ class HangmanFragment : Fragment() {
                 showGameOverDialog()
                 viewModel.gameOver(true)
             }
-
         })
 
         viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
@@ -46,7 +45,6 @@ class HangmanFragment : Fragment() {
                 hangmanView.restartGame()
             }
         })
-
 
         // Let's assume you have a function to check the current state of the game and update incorrectGuesses
         // For example, you call this function whenever a new letter is guessed
@@ -77,7 +75,6 @@ class HangmanFragment : Fragment() {
         // Create and show the dialog
         builder.create().show()
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

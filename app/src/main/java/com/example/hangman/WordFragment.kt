@@ -19,10 +19,7 @@ class WordFragment : Fragment() {
     private lateinit var selectedWord: String
     private lateinit var wordGuess: String
     val words = listOf("PARENT", "CLEAN", "ARCHER", "ANTIHERO", "FIFTEEN", "FEARLESS", "MIDNIGHT", "EVERMORE", "DEBUT", "RED", "FOLKLORE")
-
-
-
-
+    val hintWords = listOf("GUARDIAN", "Tidy", "SHOOTER", "GREY", "YOUTH", "BOLD", "NIGHT", "FOREVER", "BEGINNING", "HUE", "CULTURE")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

@@ -19,7 +19,6 @@ class HangmanView(context: Context, attrs: AttributeSet? = null) : View(context,
         strokeWidth = 10f
     }
 
-
     var incorrectGuesses = -1
         set(value) {
             field = value
@@ -95,7 +94,5 @@ class HangmanView(context: Context, attrs: AttributeSet? = null) : View(context,
         incorrectGuesses = 0 // Reset the counter to its initial state
         invalidate() // Force the view to redraw from scratch
     }
-//        fun setIncorrectGuesses(value: Int) {
-//        invalidate() // Redraw the view
-//    }
+
 }
