@@ -30,6 +30,10 @@ class SharedViewModel : ViewModel() {
     private val _gameover = MutableLiveData<Boolean>()
     val gameover: LiveData<Boolean> = _gameover
 
+    //boolean for game win
+    private val _gamewin = MutableLiveData<Boolean>()
+    val gamewin: LiveData<Boolean> = _gamewin
+
 
 
     // Function used to set a new word
@@ -56,6 +60,10 @@ class SharedViewModel : ViewModel() {
 
     fun gameOver(state: Boolean){
         _gameover.value = state
+    }
+
+    fun gameWin(state: Boolean){
+        _gamewin.value = state
     }
 
     fun resetIncorrect(){

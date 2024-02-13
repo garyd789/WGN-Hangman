@@ -1,5 +1,6 @@
 package com.example.hangman
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +39,7 @@ class HangmanFragment : Fragment() {
             }
 
         })
+
 
         // Let's assume you have a function to check the current state of the game and update incorrectGuesses
         // For example, you call this function whenever a new letter is guessed
