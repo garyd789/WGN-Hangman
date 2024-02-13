@@ -28,4 +28,5 @@
     <string name="Z">Z</string>
     <string name="new_game">NEW GAME</string>
     <string name="choose_letter">CHOOSE A LETTER</string>
+    <string name="blank">.</string>
 </resources>

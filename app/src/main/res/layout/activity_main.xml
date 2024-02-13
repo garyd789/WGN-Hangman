@@ -62,4 +62,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/letters_fragment_container" />
 
+
 </androidx.constraintlayout.widget.ConstraintLayout>
