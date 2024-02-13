@@ -1,13 +1,18 @@
 package com.example.hangman
 
+import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.hangman.databinding.FragmentHintBinding // Assuming you have a layout file named fragment_hint.xml
+import com.example.hangman.databinding.LettersBinding
 
 //Wibert’s task
 
@@ -23,7 +28,6 @@ class HintFragment : Fragment() {
     private lateinit var viewModel: SharedViewModel
     private var hintClickCount = 0
 
-    //•	The first time it is clicked it displays a hint message.
     //•	The second time it is clicked it disables half of the remaining letters (that are not part of the word)
     // BUT it costs the user a turn.
     //•	The third time it is clicked, it shows all the vowels, BUT it costs the user a turn.
@@ -34,6 +38,14 @@ class HintFragment : Fragment() {
         _binding = FragmentHintBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
+        viewModel._currentWordIndex.observe(viewLifecycleOwner, Observer { index: Int ->
+            Log.d("HintFragment", "Current word index: $index")
+            val hint = viewModel.getCurrentHint()
+            Log.d("HintFragment", "Current hint: $hint")
+            // Directly set the hint text for debugging
+            binding.HintText.text = hint ?: "No hint available"
+        })
+
         savedInstanceState?.let {
             hintClickCount = it.getInt("hintClickCount", 0)
         }
@@ -42,11 +54,19 @@ class HintFragment : Fragment() {
             hintClickCount++
             System.out.print("print count click hint" + hintClickCount)
             when (hintClickCount) {
+                //•	The first time it is clicked it displays a hint message.
                 1 -> showHintMessage()
+                //•	The second time it is clicked it disables half of the remaining letters
+                // (that are not part of the word)
+                // BUT it costs the user a turn.
                 2 -> {
                     disableHalfOfLetters()
                     consumeTurn()
                 }
+                //•	The third time it is clicked, it shows all the vowels,
+                // BUT it costs the user a turn.
+                // Be sure to disable all of the vowel
+                // buttons so they user doesn’t click them again.
                 3 -> {
                     showVowels()
                     disableVowelButtons()
@@ -65,15 +85,34 @@ class HintFragment : Fragment() {
 
     private fun showHintMessage() {
         // Use getString(R.string.your_hint_message) to retrieve messages from strings.xml
-        Toast.makeText(context, getString(R.string.hint_message), Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, getString(R.string.hint_message), Toast.LENGTH_SHORT).show()
+        // Assuming you have a hint message to display. Retrieve it from your ViewModel or define it here.
+        val hintMessage = viewModel.getCurrentHint() ?: "No hint available"
+
+        // Update the TextView with the ID HintText with the hint message
+        binding.HintText.text = hintMessage
     }
 
     private fun disableHalfOfLetters() {
-        // Your logic to disable half of the letters
+        lateinit var binding: LettersBinding
+
+        //disable half of the letters
+        val enabledButtons = listOf(binding.AButton, binding.BButton, /* and so on for all letter buttons */)
+            .filter { it.isEnabled }
+
+        // Randomly disable half of the enabled buttons
+        enabledButtons.shuffled().take(enabledButtons.size / 2).forEach { button ->
+            activity?.runOnUiThread {
+                button.isEnabled = false
+                // Optionally set the button to a disabled color
+//                button.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.disabled_button))
+            }
+        }
     }
 
     private fun consumeTurn() {
-        // Your logic to consume a turn
+//        viewModel.consumeTurn()
+//        _incorrect.value = (_incorrect.value ?: 0) + 1
     }
 
     private fun showVowels() {
