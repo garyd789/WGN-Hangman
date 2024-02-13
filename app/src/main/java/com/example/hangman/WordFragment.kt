@@ -73,6 +73,7 @@ class WordFragment : Fragment() {
         val res = result.toString()
         if (!res.contains("_")){
             showCongratsDialog()
+            viewModel.gameWin(true)
         }
         return result.toString()
     }

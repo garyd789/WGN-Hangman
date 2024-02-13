@@ -40,6 +40,13 @@ class HangmanFragment : Fragment() {
 
         })
 
+        viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+            if (gamewin){
+                val hangmanView = binding.hangmanView
+                hangmanView.restartGame()
+            }
+        })
+
 
         // Let's assume you have a function to check the current state of the game and update incorrectGuesses
         // For example, you call this function whenever a new letter is guessed
