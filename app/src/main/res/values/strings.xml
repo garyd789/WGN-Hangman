@@ -30,4 +30,5 @@
     <string name="choose_letter">CHOOSE A LETTER</string>
     <string name="blank">.</string>
     <string name="done">Word completed!</string>
+    <string name="hint_message">Your hint message here</string>
 </resources>

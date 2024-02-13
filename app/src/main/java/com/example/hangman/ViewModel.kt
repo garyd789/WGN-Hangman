@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlin.random.Random
 
 class SharedViewModel : ViewModel() {
     // private mutable data
@@ -11,7 +12,6 @@ class SharedViewModel : ViewModel() {
 
     // public immutable LiveData
     val word: LiveData<String> = _word
-
 
     //boolean for when a letter is guessed
     private val _guess = MutableLiveData<Boolean>()
@@ -34,7 +34,10 @@ class SharedViewModel : ViewModel() {
     private val _gamewin = MutableLiveData<Boolean>()
     val gamewin: LiveData<Boolean> = _gamewin
 
-
+    // New properties for managing words and hints
+    private val _currentWordIndex = MutableLiveData<Int>()
+    private val words = listOf("PARENT", "CLEAN", "ARCHER", "ANTIHERO", "FIFTEEN", "FEARLESS", "MIDNIGHT", "EVERMORE", "DEBUT", "RED", "FOLKLORE")
+    private val hintWords = listOf("GUARDIAN", "Tidy", "SHOOTER", "GREY", "YOUTH", "BOLD", "NIGHT", "FOREVER", "BEGINNING", "HUE", "CULTURE")
 
     // Function used to set a new word
     fun setWord(newWord: String) {
@@ -69,5 +72,17 @@ class SharedViewModel : ViewModel() {
     fun resetIncorrect(){
         _incorrect.value = 0
     }
+
+    // New game logic including selecting a new word and its hint
+    fun newGame() {
+        val index = Random.nextInt(words.size)
+        _currentWordIndex.value = index
+        setWord(words[index])
+        resetIncorrect()
+        // Reset or set other game state as needed
+    }
+
+    // Function to retrieve the hint for the current word
+    fun getCurrentHint(): String? = _currentWordIndex.value?.let { hintWords[it] }
 
 }
