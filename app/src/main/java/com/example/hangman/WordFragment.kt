@@ -70,38 +70,32 @@ class WordFragment : Fragment() {
         val res = result.toString()
         if (!res.contains("_")){
             showCongratsDialog()
-            viewModel.gameWin(true)
         }
         return result.toString()
     }
 
     fun showCongratsDialog() {
-        // Create an AlertDialog builder
         val builder = AlertDialog.Builder(requireActivity())
         viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
 
-        // Set the title and message for the dialog
         builder.setTitle("Congratulations!")
         builder.setMessage("Would you like to restart the game?")
 
-        // Add a button to the dialog for restarting the game
+        //Restart game
         builder.setPositiveButton("Restart Game") { dialog, which ->
-            // Code to restart the game goes here
             newGame()
         }
-
-        // Optionally, add a cancel or dismiss button
+        //Close dialog
         builder.setNegativeButton("Cancel", { dialog, which ->
-            // Code to dismiss the dialog and perhaps exit the game or perform another action
             dialog.dismiss()
         })
 
-        // Create and show the dialog
         builder.create().show()
     }
 
     fun newGame(){
+        viewModel.gameWin(true)
         selectedWord = words[Random.nextInt(words.size)]
         viewModel.setWord(selectedWord)
         wordGuess = generateLinesWithSpacesForWord(selectedWord)

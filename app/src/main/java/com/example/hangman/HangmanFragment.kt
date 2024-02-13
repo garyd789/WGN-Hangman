@@ -46,6 +46,14 @@ class HangmanFragment : Fragment() {
             }
         })
 
+        viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+            if (gameover){
+                viewModel.resetIncorrect()
+                val hangmanView = binding.hangmanView
+                hangmanView.restartGame()
+            }
+        })
+
         // Let's assume you have a function to check the current state of the game and update incorrectGuesses
         // For example, you call this function whenever a new letter is guessed
 
