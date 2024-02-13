@@ -22,6 +22,11 @@ class SharedViewModel : ViewModel() {
     private val _letter = MutableLiveData<Char>()
     val letter: LiveData<Char> = _letter
 
+    //variable for incorrect guesses
+    private val _incorrect = MutableLiveData<Int>()
+    val incorrect: LiveData<Int> = _incorrect
+
+
     // Function used to set a new word
     fun setWord(newWord: String) {
         _word.value = newWord
@@ -31,7 +36,14 @@ class SharedViewModel : ViewModel() {
             _guess.value = true
             _letter.value = letter
             Log.d("ViewModel", "Letter guessed correctly")
-
+    }
+    fun guessWrong(letter: Char) {
+        _incorrect.value?.let {
+            _incorrect.value = it + 1
+        } ?: run {
+            _incorrect.value = 1 // Initialize with 0 if it's null
+        }
+        Log.d("ViewModel", "Letter guessed incorrectly")
     }
 
 }

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -33,7 +34,6 @@ class WordFragment : Fragment() {
         // Select a random word from the list
         val selectedWord = words[Random.nextInt(words.size)]
 
-
         viewModel.setWord(selectedWord)
         var wordGuess = generateLinesWithSpacesForWord(selectedWord)
         binding.wordContainer.setText(wordGuess)
@@ -44,6 +44,13 @@ class WordFragment : Fragment() {
                     viewModel.word.observe(viewLifecycleOwner, Observer { answer ->
                         wordGuess = updatePlaceholderStringWithGuess(answer, wordGuess, char)
                         binding.wordContainer.setText(wordGuess)
+                        if (!wordGuess.contains("_")){
+                            Toast.makeText(
+                                getActivity(), // Use getActivity() to get the context of the containing activity
+                                R.string.done,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     })
                 })
 
@@ -52,6 +59,9 @@ class WordFragment : Fragment() {
 
         return binding.root
     }
+
+
+
     // Function to replace each character of the word with an underscore followed by a space
     fun generateLinesWithSpacesForWord(word: String): String {
         return "_ ".repeat(word.length).trimEnd()
@@ -68,6 +78,7 @@ class WordFragment : Fragment() {
         }
         return result.toString()
     }
+
 
 
 }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.os.Bundle
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
@@ -14,6 +15,7 @@ class HangmanView(context: Context, attrs: AttributeSet? = null) : View(context,
         style = Paint.Style.STROKE
         strokeWidth = 10f
     }
+
 
     var incorrectGuesses = -1
         set(value) {
@@ -52,19 +54,6 @@ class HangmanView(context: Context, attrs: AttributeSet? = null) : View(context,
         canvas.drawLine(middleGroundLeft.toFloat() , yHeight.toFloat(), middleGroundRight.toFloat(), yHeight.toFloat() , paint)
         // short vertical line
         canvas.drawLine(xLeft.toFloat(), yBottom.toFloat(), xLeft.toFloat(), shortLineHeight.toFloat(), paint)
-        // testing for the first drawing
-        // Draw the head - this is (1/2 plus the top)
-        canvas.drawCircle(xLeft.toFloat(), headYCoor.toFloat(), headRadius.toFloat(), paint)
-        // Draw the Hangman body
-        canvas.drawLine(xLeft.toFloat(), bodyYTop.toFloat(), xLeft.toFloat(), bodyYBot.toFloat(), paint)
-        //  right arm (angled downwards)
-        canvas.drawLine(xLeft.toFloat(), handYbot.toFloat(), handXRight.toFloat(), handYTop.toFloat(), paint)
-        // left arm (angled downwards)
-        canvas.drawLine(xLeft.toFloat(), handYbot.toFloat(), handXLeft.toFloat(), handYTop.toFloat(), paint)
-        // right leg
-        canvas.drawLine(xLeft.toFloat(), bodyYTop.toFloat(), handXRight.toFloat(), legYheight.toFloat(), paint)
-        // left leg
-        canvas.drawLine(xLeft.toFloat(), bodyYTop.toFloat(), handXLeft.toFloat(), legYheight.toFloat(), paint)
 
         //Make first mistake
         if (incorrectGuesses >= 1) {

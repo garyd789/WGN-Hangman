@@ -35,6 +35,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains A")
                 }
                 else {
+                    viewModel.guessWrong('A')
                     Log.d("LettersFragment", "Does not contain A")
                 }
             }
@@ -47,6 +48,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains B")
                 }
                 else {
+                    viewModel.guessWrong('B')
                     Log.d("LettersFragment", "Does not contain B")
                 }
             }
@@ -58,6 +60,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains C")
                 }
                 else {
+                    viewModel.guessWrong('C')
                     Log.d("LettersFragment", "Does not contain C")
                 }
             }
@@ -69,6 +72,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains D")
                 }
                 else {
+                    viewModel.guessWrong('D')
                     Log.d("LettersFragment", "Does not contain D")
                 }
             }
@@ -80,6 +84,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains E")
                 }
                 else {
+                    viewModel.guessWrong('E')
                     Log.d("LettersFragment", "Does not contain E")
                 }
             }
@@ -91,6 +96,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains F")
                 }
                 else {
+                    viewModel.guessWrong('F')
                     Log.d("LettersFragment", "Does not contain F")
                 }
             }
@@ -102,6 +108,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains G")
                 }
                 else {
+                    viewModel.guessWrong('G')
                     Log.d("LettersFragment", "Does not contain G")
                 }
             }
@@ -113,6 +120,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains H")
                 }
                 else {
+                    viewModel.guessWrong('H')
                     Log.d("LettersFragment", "Does not contain H")
                 }
             }
@@ -124,6 +132,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains I")
                 }
                 else {
+                    viewModel.guessWrong('I')
                     Log.d("LettersFragment", "Does not contain I")
                 }
             }
@@ -135,6 +144,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains J")
                 }
                 else {
+                    viewModel.guessWrong('J')
                     Log.d("LettersFragment", "Does not contain J")
                 }
             }
@@ -146,6 +156,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains K")
                 }
                 else {
+                    viewModel.guessWrong('K')
                     Log.d("LettersFragment", "Does not contain K")
                 }
             }
@@ -157,6 +168,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains L")
                 }
                 else {
+                    viewModel.guessWrong('L')
                     Log.d("LettersFragment", "Does not contain L")
                 }
             }
@@ -168,6 +180,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains M")
                 }
                 else {
+                    viewModel.guessWrong('M')
                     Log.d("LettersFragment", "Does not contain M")
                 }
             }
@@ -179,6 +192,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains N")
                 }
                 else {
+                    viewModel.guessWrong('N')
                     Log.d("LettersFragment", "Does not contain N")
                 }
             }
@@ -190,6 +204,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains O")
                 }
                 else {
+                    viewModel.guessWrong('O')
                     Log.d("LettersFragment", "Does not contain O")
                 }
             }
@@ -201,6 +216,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains P")
                 }
                 else {
+                    viewModel.guessWrong('P')
                     Log.d("LettersFragment", "Does not contain P")
                 }
             }
@@ -212,6 +228,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains Q")
                 }
                 else {
+                    viewModel.guessWrong('Q')
                     Log.d("LettersFragment", "Does not contain Q")
                 }
             }
@@ -223,6 +240,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains R")
                 }
                 else {
+                    viewModel.guessWrong('R')
                     Log.d("LettersFragment", "Does not contain R")
                 }
             }
@@ -234,6 +252,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains S")
                 }
                 else {
+                    viewModel.guessWrong('S')
                     Log.d("LettersFragment", "Does not contain S")
                 }
             }
@@ -245,6 +264,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains T")
                 }
                 else {
+                    viewModel.guessWrong('T')
                     Log.d("LettersFragment", "Does not contain T")
                 }
             }
@@ -256,6 +276,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains U")
                 }
                 else {
+                    viewModel.guessWrong('U')
                     Log.d("LettersFragment", "Does not contain U")
                 }
             }
@@ -267,6 +288,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains V")
                 }
                 else {
+                    viewModel.guessWrong('V')
                     Log.d("LettersFragment", "Does not contain V")
                 }
             }
@@ -278,6 +300,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains W")
                 }
                 else {
+                    viewModel.guessWrong('W')
                     Log.d("LettersFragment", "Does not contain W")
                 }
             }
@@ -289,6 +312,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains X")
                 }
                 else {
+                    viewModel.guessWrong('X')
                     Log.d("LettersFragment", "Does not contain X")
                 }
             }
@@ -300,6 +324,8 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains Y")
                 }
                 else {
+
+                    viewModel.guessWrong('Y')
                     Log.d("LettersFragment", "Does not contain Y")
                 }
             }
@@ -311,6 +337,7 @@ class LettersFragment : Fragment() {
                     Log.d("LettersFragment", "Contains Z")
                 }
                 else {
+                    viewModel.guessWrong('Z')
                     Log.d("LettersFragment", "Does not contain Z")
                 }
             }
