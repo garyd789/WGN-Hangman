@@ -22,6 +22,7 @@ class WordFragment : Fragment() {
     val hintWords = listOf("GUARDIAN", "Tidy", "SHOOTER", "GREY", "YOUTH", "BOLD", "NIGHT", "FOREVER", "BEGINNING", "HUE", "CULTURE")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -32,40 +33,24 @@ class WordFragment : Fragment() {
         binding = WordBinding.inflate(layoutInflater, container, false)
         viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
-       newGame()
-//        viewModel.newGame()
-
-        // Observe the current word from ViewModel
-        viewModel.word.observe(viewLifecycleOwner, Observer { newWord ->
-            // Update your UI with the new word
-            updateWordUI(newWord)
-        })
+        newGame()
 
         // Select a random word from the list after gameover
         viewModel.gameover.observe(viewLifecycleOwner, Observer {gameover ->
             if (gameover) {
-//                newGame()
-                viewModel.newGame()
+                newGame()
                 Log.d("WordFragment", "New word selected")
             }
         })
         viewModel.letter.observe(viewLifecycleOwner, Observer{ char ->
             wordGuess = updatePlaceholderStringWithGuess(selectedWord, wordGuess, char)
             binding.wordContainer.setText(wordGuess)
-            val currentPlaceholder = binding.wordContainer.text.toString()
-            val updatedPlaceholder = updatePlaceholderStringWithGuess(selectedWord, wordGuess, char)
-            binding.wordContainer.text = updatedPlaceholder
 
         })
 
         return binding.root
     }
 
-    private fun updateWordUI(word: String) {
-        // Here, transform the word into the placeholder format (e.g., "_ _ _ _ _")
-        val placeholder = generateLinesWithSpacesForWord(word)
-        binding.wordContainer.text = placeholder
-    }
 
 
     // Function to replace each character of the word with an underscore followed by a space
@@ -85,43 +70,37 @@ class WordFragment : Fragment() {
         val res = result.toString()
         if (!res.contains("_")){
             showCongratsDialog()
-            viewModel.gameWin(true)
         }
         return result.toString()
     }
 
     fun showCongratsDialog() {
-        // Create an AlertDialog builder
         val builder = AlertDialog.Builder(requireActivity())
         viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
 
-        // Set the title and message for the dialog
         builder.setTitle("Congratulations!")
         builder.setMessage("Would you like to restart the game?")
 
-        // Add a button to the dialog for restarting the game
+        //Restart game
         builder.setPositiveButton("Restart Game") { dialog, which ->
-            // Code to restart the game goes here
-//            newGame()
-            viewModel.newGame()
+            newGame()
         }
-
-        // Optionally, add a cancel or dismiss button
+        //Close dialog
         builder.setNegativeButton("Cancel", { dialog, which ->
-            // Code to dismiss the dialog and perhaps exit the game or perform another action
             dialog.dismiss()
         })
 
-        // Create and show the dialog
         builder.create().show()
     }
 
     fun newGame(){
+        viewModel.gameWin(true)
         selectedWord = words[Random.nextInt(words.size)]
         viewModel.setWord(selectedWord)
         wordGuess = generateLinesWithSpacesForWord(selectedWord)
         binding.wordContainer.setText(wordGuess)
+
     }
 
 

@@ -17,6 +17,7 @@ class SharedViewModel : ViewModel() {
     private val _guess = MutableLiveData<Boolean>()
     val guess: LiveData<Boolean> = _guess
 
+
     //variable used to pass along letters
     private val _letter = MutableLiveData<Char>()
     val letter: LiveData<Char> = _letter
@@ -34,33 +35,19 @@ class SharedViewModel : ViewModel() {
     val gamewin: LiveData<Boolean> = _gamewin
 
     // New properties for managing words and hints
-//    private val _currentWordIndex = MutableLiveData<Int>()
-    val _currentWordIndex = MutableLiveData<Int>()
+    private val _currentWordIndex = MutableLiveData<Int>()
     private val words = listOf("PARENT", "CLEAN", "ARCHER", "ANTIHERO", "FIFTEEN", "FEARLESS", "MIDNIGHT", "EVERMORE", "DEBUT", "RED", "FOLKLORE")
     private val hintWords = listOf("GUARDIAN", "Tidy", "SHOOTER", "GREY", "YOUTH", "BOLD", "NIGHT", "FOREVER", "BEGINNING", "HUE", "CULTURE")
-
-    // New game logic including selecting a new word and its hint
-    fun newGame() {
-        val index = Random.nextInt(words.size)
-        _currentWordIndex.value = index
-        setWord(words[index])
-//        setWord(hintWords[index])
-        resetIncorrect()
-        // Reset or set other game state as needed
-    }
 
     // Function used to set a new word
     fun setWord(newWord: String) {
         _word.value = newWord
         Log.d("ViewModel", newWord)
     }
-
-    // Function to retrieve the hint for the current word
-    fun getCurrentHint(): String? = _currentWordIndex.value?.let { hintWords[it] }
     fun guessRight(letter: Char) {
-            _guess.value = true
-            _letter.value = letter
-            Log.d("ViewModel", "Letter guessed correctly")
+        _guess.value = true
+        _letter.value = letter
+        Log.d("ViewModel", "Letter guessed correctly")
     }
     fun guessWrong(letter: Char) {
         val currentCount = _incorrect.value ?: 0
@@ -85,5 +72,17 @@ class SharedViewModel : ViewModel() {
     fun resetIncorrect(){
         _incorrect.value = 0
     }
+
+    // New game logic including selecting a new word and its hint
+    fun newGame() {
+        val index = Random.nextInt(words.size)
+        _currentWordIndex.value = index
+        setWord(words[index])
+        resetIncorrect()
+        // Reset or set other game state as needed
+    }
+
+    // Function to retrieve the hint for the current word
+    fun getCurrentHint(): String? = _currentWordIndex.value?.let { hintWords[it] }
 
 }
