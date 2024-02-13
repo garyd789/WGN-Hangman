@@ -4,11 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.hangman.databinding.HangmanBinding
 import com.example.hangman.HangmanView
+import kotlinx.coroutines.delay
 
 class HangmanFragment : Fragment() {
 
@@ -30,24 +32,48 @@ class HangmanFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         viewModel.incorrect.observe(viewLifecycleOwner, Observer { incorrect ->
             binding.hangmanView.incorrectGuesses = incorrect
+            if (incorrect == 6){
+                showGameOverDialog()
+                viewModel.gameOver(true)
+            }
+
         })
 
         // Let's assume you have a function to check the current state of the game and update incorrectGuesses
         // For example, you call this function whenever a new letter is guessed
-        updateGame(hangmanView)
+
     }
 
-    // call this function if word guess is not right then increment the incorrect guess
-    private fun updateGame(hangmanView: HangmanView) {
-        // Your logic to update the game state goes here
-        hangmanView.incorrectGuesses++
-        if (hangmanView.incorrectGuesses == 6){
+    fun showGameOverDialog() {
+        // Create an AlertDialog builder
+        val builder = AlertDialog.Builder(requireActivity())
+        val hangmanView = binding.hangmanView
+
+        // Set the title and message for the dialog
+        builder.setTitle("Game Over")
+        builder.setMessage("Would you like to restart the game?")
+
+        // Add a button to the dialog for restarting the game
+        builder.setPositiveButton("Restart Game") { dialog, which ->
+            // Code to restart the game goes here
             hangmanView.restartGame()
         }
+
+        // Optionally, add a cancel or dismiss button
+        builder.setNegativeButton("Cancel", { dialog, which ->
+            // Code to dismiss the dialog and perhaps exit the game or perform another action
+            dialog.dismiss()
+        })
+
+        // Create and show the dialog
+        builder.create().show()
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null // This is to avoid memory leaks
     }
+
+
 }

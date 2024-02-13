@@ -26,6 +26,11 @@ class SharedViewModel : ViewModel() {
     private val _incorrect = MutableLiveData<Int>()
     val incorrect: LiveData<Int> = _incorrect
 
+    //boolean for game over
+    private val _gameover = MutableLiveData<Boolean>()
+    val gameover: LiveData<Boolean> = _gameover
+
+
 
     // Function used to set a new word
     fun setWord(newWord: String) {
@@ -38,12 +43,23 @@ class SharedViewModel : ViewModel() {
             Log.d("ViewModel", "Letter guessed correctly")
     }
     fun guessWrong(letter: Char) {
-        _incorrect.value?.let {
-            _incorrect.value = it + 1
-        } ?: run {
-            _incorrect.value = 1 // Initialize with 0 if it's null
+        val currentCount = _incorrect.value ?: 0
+        if (currentCount < 6) {
+            _incorrect.value = currentCount + 1
+            Log.d("ViewModel", "Letter guessed incorrectly: $letter")
+        } else {
+            // Reset the count when it reaches 6
+            _incorrect.value = 1
+            Log.d("ViewModel", "Incorrect count reset after reaching limit with letter: $letter")
         }
-        Log.d("ViewModel", "Letter guessed incorrectly")
+    }
+
+    fun gameOver(state: Boolean){
+        _gameover.value = state
+    }
+
+    fun resetIncorrect(){
+        _incorrect.value = 0
     }
 
 }

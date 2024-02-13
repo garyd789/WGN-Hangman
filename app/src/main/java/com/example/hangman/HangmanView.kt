@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
+import com.example.hangman.databinding.WordBinding
 
 class HangmanView(context: Context, attrs: AttributeSet? = null) : View(context, attrs) {
     private val paint = Paint().apply {
@@ -77,19 +78,19 @@ class HangmanView(context: Context, attrs: AttributeSet? = null) : View(context,
         }
 
         if (incorrectGuesses >= 5) {
-            // Draw the left leg
+            // Draw the right leg
             canvas.drawLine(xLeft.toFloat(), bodyYTop.toFloat(), handXRight.toFloat(), legYheight.toFloat(), paint)
         }
 
         if (incorrectGuesses >= 6) {
-            // Draw the left right
+            // Draw the left leg
             canvas.drawLine(xLeft.toFloat(), bodyYTop.toFloat(), handXLeft.toFloat(), legYheight.toFloat(), paint)
 
         }
     }
 
     fun restartGame() {
-        incorrectGuesses = -1 // Reset the counter to its initial state
+        incorrectGuesses = 0 // Reset the counter to its initial state
         invalidate() // Force the view to redraw from scratch
     }
 //        fun setIncorrectGuesses(value: Int) {

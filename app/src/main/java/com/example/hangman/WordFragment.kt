@@ -1,10 +1,11 @@
 package com.example.hangman
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,7 +16,10 @@ class WordFragment : Fragment() {
 
     private lateinit var binding: WordBinding
     private lateinit var viewModel: SharedViewModel
+    private lateinit var selectedWord: String
     val words = listOf("PARENT", "CLEAN", "ARCHER", "ANTIHERO", "FIFTEEN", "FEARLESS", "MIDNIGHT", "EVERMORE", "DEBUT", "RED", "SPEAK NOW", "FOLKLORE")
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,12 +35,27 @@ class WordFragment : Fragment() {
         binding = WordBinding.inflate(layoutInflater, container, false)
         viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
-        // Select a random word from the list
-        val selectedWord = words[Random.nextInt(words.size)]
-
+        //Initial round
+        selectedWord = words[Random.nextInt(words.size)]
         viewModel.setWord(selectedWord)
         var wordGuess = generateLinesWithSpacesForWord(selectedWord)
         binding.wordContainer.setText(wordGuess)
+
+
+        // Select a random word from the list after gameover
+        viewModel.gameover.observe(viewLifecycleOwner, Observer {gameover ->
+            if (gameover) {
+                binding.wordContainer.setText("")
+                selectedWord = words[Random.nextInt(words.size)]
+                viewModel.setWord(selectedWord)
+                wordGuess = generateLinesWithSpacesForWord(selectedWord)
+                binding.wordContainer.setText(wordGuess)
+                Log.d("WordFragment", "New word selected")
+            }
+        })
+
+
+
 
         viewModel.guess.observe(viewLifecycleOwner, Observer { state ->
             if (state == true) {
@@ -45,11 +64,7 @@ class WordFragment : Fragment() {
                         wordGuess = updatePlaceholderStringWithGuess(answer, wordGuess, char)
                         binding.wordContainer.setText(wordGuess)
                         if (!wordGuess.contains("_")){
-                            Toast.makeText(
-                                getActivity(), // Use getActivity() to get the context of the containing activity
-                                R.string.done,
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            showCongratsDialog()
                         }
                     })
                 })
@@ -78,6 +93,31 @@ class WordFragment : Fragment() {
         }
         return result.toString()
     }
+
+    fun showCongratsDialog() {
+        // Create an AlertDialog builder
+        val builder = AlertDialog.Builder(requireActivity())
+
+
+        // Set the title and message for the dialog
+        builder.setTitle("Congratulations!")
+        builder.setMessage("Would you like to restart the game?")
+
+        // Add a button to the dialog for restarting the game
+        builder.setPositiveButton("Restart Game") { dialog, which ->
+            // Code to restart the game goes here
+        }
+
+        // Optionally, add a cancel or dismiss button
+        builder.setNegativeButton("Cancel", { dialog, which ->
+            // Code to dismiss the dialog and perhaps exit the game or perform another action
+            dialog.dismiss()
+        })
+
+        // Create and show the dialog
+        builder.create().show()
+    }
+
 
 
 
