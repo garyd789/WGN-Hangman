@@ -25,7 +25,6 @@
         android:id="@+id/HintText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="HintText"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/hintButton"
         app:layout_constraintEnd_toEndOf="parent"
