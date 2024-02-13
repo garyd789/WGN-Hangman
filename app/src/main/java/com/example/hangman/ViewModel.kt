@@ -73,16 +73,5 @@ class SharedViewModel : ViewModel() {
         _incorrect.value = 0
     }
 
-    // New game logic including selecting a new word and its hint
-    fun newGame() {
-        val index = Random.nextInt(words.size)
-        _currentWordIndex.value = index
-        setWord(words[index])
-        resetIncorrect()
-        // Reset or set other game state as needed
-    }
-
-    // Function to retrieve the hint for the current word
-    fun getCurrentHint(): String? = _currentWordIndex.value?.let { hintWords[it] }
 
 }
