@@ -26,18 +26,15 @@ class HangmanFragment : Fragment() {
         // For example, you call this function whenever a new letter is guessed
         updateGame(hangmanView)
     }
+
+    // call this function if word guess is not right then increment the incorrect guess
     private fun updateGame(hangmanView: HangmanView) {
         // Your logic to update the game state goes here
-        // For demonstration, let's increment incorrectGuesses every time this function is called
         hangmanView.incorrectGuesses++
+        if (hangmanView.incorrectGuesses == 6){
+            hangmanView.restartGame()
+        }
     }
-
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//        // You can now access your HangmanView through binding if it is defined in your HangmanBinding
-//        // Example: val hangmanView = binding.hangmanViewContainer
-//        // And you can set properties on your hangmanView as needed
-//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

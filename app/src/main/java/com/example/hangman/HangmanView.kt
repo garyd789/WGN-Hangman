@@ -25,13 +25,6 @@ class HangmanView(context: Context, attrs: AttributeSet? = null) : View(context,
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        val armLength = 50f
-        val bodyHeight = 150f
-
-        val legLength = 50f
-        val footLength = 20f
-        val ropeHang = 50f
-
         val yHeightFull = height.toDouble()
         val xWidthFull = width.toDouble()
 
@@ -102,10 +95,15 @@ class HangmanView(context: Context, attrs: AttributeSet? = null) : View(context,
         if (incorrectGuesses >= 6) {
             // Draw the left right
             canvas.drawLine(xLeft.toFloat(), bodyYTop.toFloat(), handXLeft.toFloat(), legYheight.toFloat(), paint)
+
         }
     }
-    //    fun setIncorrectGuesses(value: Int) {
-//        incorrectGuesses = 5
-//        invalidate() // Redraw the view
-//    }
+
+    fun restartGame() {
+        incorrectGuesses = -1 // Reset the counter to its initial state
+        invalidate() // Force the view to redraw from scratch
+    }
+        fun setIncorrectGuesses(value: Int) {
+        invalidate() // Redraw the view
+    }
 }
