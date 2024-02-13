@@ -25,56 +25,85 @@ class HangmanView(context: Context, attrs: AttributeSet? = null) : View(context,
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        val headRadius = 50f
-        val armLength = 50f
-        val legLength = 50f
-        val footLength = 20f
-        val baseLineHeight = height - 2 * headRadius - legLength - footLength
+        val yHeightFull = height.toDouble()
+        val xWidthFull = width.toDouble()
 
+        val yHeight = yHeightFull*0.9
+        val yBottom = yHeightFull*0.1
+        val xRight = xWidthFull*0.6
+        val xLeft = xWidthFull*0.2
+        val middleGroundLeft = xLeft*2
+        val middleGroundRight = xWidthFull*0.80
+        val shortLineHeight = yHeightFull*0.2
+        val headRadius = yHeightFull * 0.1
+        val headYCoor = yBottom + headRadius*2
+        val bodyYBot = headYCoor + headRadius
+        val bodyYTop = yHeightFull*0.65
+        val handYbot = bodyYBot +  headRadius*0.5
+        val handYTop = handYbot + headRadius
+        val handXRight = xWidthFull*0.3
+        val handXLeft = xWidthFull*0.1
+        val legYheight = bodyYBot + bodyYBot
         // Vertical line on right side
-        canvas.drawLine(width.toFloat() - 400f, height.toFloat() - 50f, width.toFloat() - 400f, 100f, paint)
+        canvas.drawLine(xRight.toFloat(), yHeight.toFloat(), xRight.toFloat(), yBottom.toFloat(), paint)
         // horizontal line on top
-        canvas.drawLine(width.toFloat() - 400f, 100f, width.toFloat()-800f, 100f, paint)
+        canvas.drawLine(xRight.toFloat(), yBottom.toFloat(), xLeft.toFloat(), yBottom.toFloat(), paint)
         // horizontal line bottom
-        canvas.drawLine(width.toFloat()-150f, height.toFloat() - 50f, width.toFloat()-650f, height.toFloat() - 50f, paint)
+        canvas.drawLine(middleGroundLeft.toFloat() , yHeight.toFloat(), middleGroundRight.toFloat(), yHeight.toFloat() , paint)
         // short vertical line
-        canvas.drawLine(width.toFloat()-800f, 100f, width.toFloat()-800f, 200f, paint)
-
-
-        Log.d("HangmanView", "Width / 2: ${width.toFloat() / 2}")
-
+        canvas.drawLine(xLeft.toFloat(), yBottom.toFloat(), xLeft.toFloat(), shortLineHeight.toFloat(), paint)
+        // testing for the first drawing
+        // Draw the head - this is (1/2 plus the top)
+        canvas.drawCircle(xLeft.toFloat(), headYCoor.toFloat(), headRadius.toFloat(), paint)
+        // Draw the Hangman body
+        canvas.drawLine(xLeft.toFloat(), bodyYTop.toFloat(), xLeft.toFloat(), bodyYBot.toFloat(), paint)
+        //  right arm (angled downwards)
+        canvas.drawLine(xLeft.toFloat(), handYbot.toFloat(), handXRight.toFloat(), handYTop.toFloat(), paint)
+        // left arm (angled downwards)
+        canvas.drawLine(xLeft.toFloat(), handYbot.toFloat(), handXLeft.toFloat(), handYTop.toFloat(), paint)
+        // right leg
+        canvas.drawLine(xLeft.toFloat(), bodyYTop.toFloat(), handXRight.toFloat(), legYheight.toFloat(), paint)
+        // left leg
+        canvas.drawLine(xLeft.toFloat(), bodyYTop.toFloat(), handXLeft.toFloat(), legYheight.toFloat(), paint)
 
         //Make first mistake
         if (incorrectGuesses >= 1) {
-            // Hangman body
-            canvas.drawLine(width / 2f, height - headRadius, width / 2f, height - headRadius - 2 * armLength, paint)
-            // canvas.drawLine(width / 2f, 200f, width / 2f, 400f, paint) // Body
+            // Hangman Head
+            canvas.drawCircle(xLeft.toFloat(), headYCoor.toFloat(), headRadius.toFloat(), paint)
         }
 
         if (incorrectGuesses >= 2) {
-            // Right arm
-            canvas.drawLine(width / 2f + armLength, height - headRadius, width / 2f + armLength, height - headRadius - armLength, paint)
-            // canvas.drawLine(width / 2f, 250f, 2 * width / 3f, 300f, paint) // Right arm
+            // Hangman Body
+            canvas.drawLine(xLeft.toFloat(), bodyYTop.toFloat(), xLeft.toFloat(), bodyYBot.toFloat(), paint)
         }
 
         if (incorrectGuesses >= 3) {
-            // Left arm
-            canvas.drawLine(width / 2f - armLength, height - headRadius, width / 2f - armLength, height - headRadius - armLength, paint)
-            // canvas.drawLine(width / 2f, 250f, width / 3f, 300f, paint) // Left arm
+            // right arm
+            canvas.drawLine(xLeft.toFloat(), handYbot.toFloat(), handXRight.toFloat(), handYTop.toFloat(), paint)
         }
 
         if (incorrectGuesses >= 4) {
-            // Draw the right leg
-            canvas.drawLine(width / 2f + legLength / 2, height - headRadius + legLength, width / 2f + legLength / 2, height - headRadius + legLength + footLength, paint)
-            // Right leg
-            canvas.drawLine(width / 2f, 400f, 2 * width / 3f, 500f, paint) // Right leg
+            // left arm
+            canvas.drawLine(xLeft.toFloat(), handYbot.toFloat(), handXLeft.toFloat(), handYTop.toFloat(), paint)
         }
 
         if (incorrectGuesses >= 5) {
             // Draw the left leg
-            canvas.drawLine(width / 2f - legLength / 2, height - headRadius + legLength, width / 2f - legLength / 2, height - headRadius + legLength + footLength, paint)
-            // Left leg
-            // canvas.drawLine(width / 2f, 400f, width / 3f, 500f, paint) // Left leg
+            canvas.drawLine(xLeft.toFloat(), bodyYTop.toFloat(), handXRight.toFloat(), legYheight.toFloat(), paint)
+        }
+
+        if (incorrectGuesses >= 6) {
+            // Draw the left right
+            canvas.drawLine(xLeft.toFloat(), bodyYTop.toFloat(), handXLeft.toFloat(), legYheight.toFloat(), paint)
+
         }
     }
+
+    fun restartGame() {
+        incorrectGuesses = -1 // Reset the counter to its initial state
+        invalidate() // Force the view to redraw from scratch
+    }
+//        fun setIncorrectGuesses(value: Int) {
+//        invalidate() // Redraw the view
+//    }
 }
