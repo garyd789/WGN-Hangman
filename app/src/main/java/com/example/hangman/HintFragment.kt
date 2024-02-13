@@ -1,5 +1,6 @@
 package com.example.hangman
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.hangman.databinding.FragmentHintBinding // Assuming you have a layout file named fragment_hint.xml
+import com.example.hangman.databinding.LettersBinding
 
 //Wibert’s task
 
@@ -91,11 +94,25 @@ class HintFragment : Fragment() {
     }
 
     private fun disableHalfOfLetters() {
-        // Your logic to disable half of the letters
+        lateinit var binding: LettersBinding
+
+        //disable half of the letters
+        val enabledButtons = listOf(binding.AButton, binding.BButton, /* and so on for all letter buttons */)
+            .filter { it.isEnabled }
+
+        // Randomly disable half of the enabled buttons
+        enabledButtons.shuffled().take(enabledButtons.size / 2).forEach { button ->
+            activity?.runOnUiThread {
+                button.isEnabled = false
+                // Optionally set the button to a disabled color
+//                button.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.disabled_button))
+            }
+        }
     }
 
     private fun consumeTurn() {
-        // Your logic to consume a turn
+//        viewModel.consumeTurn()
+//        _incorrect.value = (_incorrect.value ?: 0) + 1
     }
 
     private fun showVowels() {
