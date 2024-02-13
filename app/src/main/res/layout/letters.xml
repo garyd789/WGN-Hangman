@@ -31,11 +31,11 @@
             android:layout_height="0dp"
             android:text="@string/A"
             android:textColor="@color/black"
-            app:backgroundTint="#b4b8b5"
+            app:backgroundTint="@color/button_color"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/choose_letter"
             app:layout_constraintEnd_toStartOf="@id/B_button"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:padding="0dp"
             app:layout_constraintDimensionRatio="1:1"/>
 
@@ -46,11 +46,11 @@
                 android:layout_height="0dp"
                 android:text="@string/B"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/A_button"
                 app:layout_constraintTop_toBottomOf="@id/choose_letter"
                 app:layout_constraintEnd_toStartOf="@id/C_button"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -61,11 +61,11 @@
                 android:layout_height="0dp"
                 android:text="@string/C"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/B_button"
                 app:layout_constraintTop_toBottomOf="@id/choose_letter"
                 app:layout_constraintEnd_toStartOf="@id/D_button"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -76,11 +76,11 @@
                 android:layout_height="0dp"
                 android:text="@string/D"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/C_button"
                 app:layout_constraintTop_toBottomOf="@id/choose_letter"
                 app:layout_constraintEnd_toStartOf="@id/E_button"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -91,11 +91,11 @@
                 android:layout_height="0dp"
                 android:text="@string/E"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/D_button"
                 app:layout_constraintTop_toBottomOf="@id/choose_letter"
                 app:layout_constraintEnd_toStartOf="@id/F_button"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -106,11 +106,11 @@
                 android:layout_height="0dp"
                 android:text="@string/F"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/E_button"
                 app:layout_constraintTop_toBottomOf="@id/choose_letter"
                 app:layout_constraintEnd_toStartOf="@id/G_button"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -121,11 +121,11 @@
                 android:layout_height="0dp"
                 android:text="@string/G"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/F_button"
                 app:layout_constraintTop_toBottomOf="@id/choose_letter"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -137,11 +137,11 @@
                 android:layout_height="0dp"
                 android:text="@string/H"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintTop_toBottomOf="@id/A_button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/I_button"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -152,11 +152,11 @@
                 android:layout_height="0dp"
                 android:text="@string/I"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/H_button"
                 app:layout_constraintTop_toBottomOf="@id/B_button"
                 app:layout_constraintEnd_toStartOf="@id/J_button"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -167,11 +167,11 @@
                 android:layout_height="0dp"
                 android:text="@string/J"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/I_button"
                 app:layout_constraintTop_toBottomOf="@id/C_button"
                 app:layout_constraintEnd_toStartOf="@id/K_button"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -182,11 +182,11 @@
                 android:layout_height="0dp"
                 android:text="@string/K"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/J_button"
                 app:layout_constraintTop_toBottomOf="@id/D_button"
                 app:layout_constraintEnd_toStartOf="@id/L_button"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -197,11 +197,11 @@
                 android:layout_height="0dp"
                 android:text="@string/L"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/K_button"
                 app:layout_constraintTop_toBottomOf="@id/E_button"
                 app:layout_constraintEnd_toStartOf="@id/M_button"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -212,11 +212,11 @@
                 android:layout_height="0dp"
                 android:text="@string/M"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/L_button"
                 app:layout_constraintTop_toBottomOf="@id/F_button"
                 app:layout_constraintEnd_toStartOf="@id/N_button"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -227,11 +227,11 @@
                 android:layout_height="0dp"
                 android:text="@string/N"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/M_button"
                 app:layout_constraintTop_toBottomOf="@id/G_button"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -245,11 +245,11 @@
                 android:layout_height="0dp"
                 android:text="@string/O"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintTop_toBottomOf="@id/H_button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/P_button"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -261,11 +261,11 @@
                 android:layout_height="0dp"
                 android:text="@string/P"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/O_button"
                 app:layout_constraintTop_toBottomOf="@id/I_button"
                 app:layout_constraintEnd_toStartOf="@id/Q_button"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -277,11 +277,11 @@
                 android:layout_height="0dp"
                 android:text="@string/Q"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/P_button"
                 app:layout_constraintTop_toBottomOf="@id/J_button"
                 app:layout_constraintEnd_toStartOf="@id/R_button"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -293,11 +293,11 @@
                 android:layout_height="0dp"
                 android:text="@string/R"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/Q_button"
                 app:layout_constraintTop_toBottomOf="@id/K_button"
                 app:layout_constraintEnd_toStartOf="@id/S_button"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -309,11 +309,11 @@
                 android:layout_height="0dp"
                 android:text="@string/S"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/R_button"
                 app:layout_constraintTop_toBottomOf="@id/L_button"
                 app:layout_constraintEnd_toStartOf="@id/T_button"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -325,11 +325,11 @@
                 android:layout_height="0dp"
                 android:text="@string/T"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/S_button"
                 app:layout_constraintTop_toBottomOf="@id/M_button"
                 app:layout_constraintEnd_toStartOf="@id/U_button"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -341,11 +341,11 @@
                 android:layout_height="0dp"
                 android:text="@string/U"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/T_button"
                 app:layout_constraintTop_toBottomOf="@id/N_button"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -360,10 +360,8 @@
                 android:padding="0dp"
                 android:text="@string/blank"
                 android:textColor="@color/white"
-                android:textSize="16sp"
                 app:backgroundTint="@color/white"
                 app:layout_constraintDimensionRatio="1:1"
-
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/O_button" />
 
@@ -375,8 +373,8 @@
                 android:padding="0dp"
                 android:text="@string/V"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                app:backgroundTint="#b4b8b5"
+                android:textSize="18sp"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toStartOf="@id/W_button"
                 app:layout_constraintStart_toEndOf="@id/blank_button"
@@ -389,12 +387,12 @@
                 android:layout_height="0dp"
                 android:text="@string/W"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/V_button"
                 app:layout_constraintTop_toBottomOf="@id/Q_button"
                 app:layout_constraintEnd_toStartOf="@id/X_button"
                 app:layout_constraintDimensionRatio="1:1"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"/>
 
 
@@ -405,11 +403,11 @@
                 android:layout_height="0dp"
                 android:text="@string/X"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/W_button"
                 app:layout_constraintTop_toBottomOf="@id/R_button"
                 app:layout_constraintEnd_toStartOf="@id/Y_button"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"
                 />
@@ -422,11 +420,11 @@
                 android:layout_height="0dp"
                 android:text="@string/Y"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/X_button"
                 app:layout_constraintTop_toBottomOf="@id/S_button"
                 app:layout_constraintEnd_toStartOf="@id/Z_button"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -438,11 +436,11 @@
                 android:layout_height="0dp"
                 android:text="@string/Z"
                 android:textColor="@color/black"
-                app:backgroundTint="#b4b8b5"
+                app:backgroundTint="@color/button_color"
                 app:layout_constraintStart_toEndOf="@id/Y_button"
                 app:layout_constraintTop_toBottomOf="@id/T_button"
                 app:layout_constraintEnd_toStartOf="@id/blank2_button"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 
@@ -457,7 +455,7 @@
                 app:layout_constraintStart_toEndOf="@id/Z_button"
                 app:layout_constraintTop_toBottomOf="@id/U_button"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:padding="0dp"
                 app:layout_constraintDimensionRatio="1:1"/>
 

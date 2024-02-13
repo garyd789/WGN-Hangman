@@ -12,7 +12,122 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.Observer
 
-
+//class LettersFragment : Fragment() {
+//
+//    private lateinit var binding: LettersBinding
+//    private lateinit var viewModel: SharedViewModel
+//
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+//    }
+//
+//    override fun onCreateView(
+//        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+//    ): View {
+//        binding = LettersBinding.inflate(inflater, container, false)
+//        setupButtonListeners()
+//        observeGameState()
+//        return binding.root
+//    }
+//
+//    private fun setupButtonListeners() {
+//        val buttons = listOf(
+//            'A' to binding.AButton,
+//            'B' to binding.BButton,
+//            'C' to binding.CButton,
+//            'D' to binding.DButton,
+//            'E' to binding.EButton,
+//            'F' to binding.FButton,
+//            'G' to binding.GButton,
+//            'H' to binding.HButton,
+//            'I' to binding.IButton,
+//            'J' to binding.JButton,
+//            'K' to binding.KButton,
+//            'L' to binding.LButton,
+//            'M' to binding.MButton,
+//            'N' to binding.NButton,
+//            'O' to binding.OButton,
+//            'P' to binding.PButton,
+//            'Q' to binding.QButton,
+//            'R' to binding.RButton,
+//            'S' to binding.SButton,
+//            'T' to binding.TButton,
+//            'U' to binding.UButton,
+//            'V' to binding.VButton,
+//            'W' to binding.WButton,
+//            'X' to binding.XButton,
+//            'Y' to binding.YButton,
+//            'Z' to binding.ZButton
+//        )
+//
+//        buttons.forEach { (letter, button) ->
+//            button.setOnClickListener {
+//                handleButtonClick(letter, button)
+//            }
+//        }
+//    }
+//
+//    private fun handleButtonClick(letter: Char, button: View) {
+//        viewModel.word.value?.let { word ->
+//            val colorRes = if (word.contains(letter.toString())) {
+//                viewModel.guessRight(letter)
+//                R.color.correct_guess
+//            } else {
+//                viewModel.guessWrong(letter)
+//                R.color.incorrect_guess
+//            }
+//            val color = ContextCompat.getColor(requireContext(), colorRes)
+//            ViewCompat.setBackgroundTintList(button, ColorStateList.valueOf(color))
+//            button.isEnabled = false
+//        }
+//    }
+//
+//    private fun observeGameState() {
+//        viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+//            if (gamewin) resetAllButtons()
+//        })
+//
+//        viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+//            if (gameover) resetAllButtons()
+//        })
+//    }
+//
+//    private fun resetAllButtons() {
+//        val defaultColor = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.button_color))
+//        listOf(
+//            binding.AButton,
+//            binding.BButton,
+//            binding.CButton,
+//            binding.DButton,
+//            binding.EButton,
+//            binding.FButton,
+//            binding.GButton,
+//            binding.HButton,
+//            binding.IButton,
+//            binding.JButton,
+//            binding.KButton,
+//            binding.LButton,
+//            binding.MButton,
+//            binding.NButton,
+//            binding.OButton,
+//            binding.PButton,
+//            binding.QButton,
+//            binding.RButton,
+//            binding.SButton,
+//            binding.TButton,
+//            binding.UButton,
+//            binding.VButton,
+//            binding.WButton,
+//            binding.XButton,
+//            binding.YButton,
+//            binding.ZButton
+//        ).forEach { button ->
+//            button.isEnabled = true
+//            ViewCompat.setBackgroundTintList(button, defaultColor)
+//        }
+//    }
+//}
 class LettersFragment : Fragment() {
 
     private lateinit var binding: LettersBinding
@@ -32,7 +147,7 @@ class LettersFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
         //set listeners on each letter
-        binding.AButton.setOnClickListener {
+        binding.AButton.setOnClickListener  {
             viewModel.word.value?.let { word ->
                 if (word.contains("A")) {
                     val color = ContextCompat.getColor(requireContext(), R.color.correct_guess)
@@ -51,19 +166,27 @@ class LettersFragment : Fragment() {
             viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
                 if (gamewin) {
                     //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.AButton, ColorStateList.valueOf(color))
                     Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
                 }
             })
 
             viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
                 if (gameover) {
                     //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.AButton, ColorStateList.valueOf(color))
                     Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
                 }
             })
         }
 
-        binding.BButton.setOnClickListener {
+        binding.BButton.setOnClickListener  {
             viewModel.word.value?.let { word ->
                 if (word.contains("B")) {
                     val color = ContextCompat.getColor(requireContext(), R.color.correct_guess)
@@ -71,16 +194,37 @@ class LettersFragment : Fragment() {
                     viewModel.guessRight('B')
                     Log.d("LettersFragment", "Contains B")
 
-                }
-                else {
-                    viewModel.guessWrong('B')
+                } else {
                     val color = ContextCompat.getColor(requireContext(), R.color.incorrect_guess)
                     ViewCompat.setBackgroundTintList(binding.BButton, ColorStateList.valueOf(color))
+                    viewModel.guessWrong('B')
                     Log.d("LettersFragment", "Does not contain B")
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.BButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.BButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
+
         binding.CButton.setOnClickListener {
             viewModel.word.value?.let { word ->
                 if (word.contains("C")) {
@@ -97,6 +241,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.CButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.CButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.DButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -114,6 +279,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.DButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.DButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.EButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -131,6 +317,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.EButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.EButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.FButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -148,6 +355,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.FButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.FButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.GButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -165,6 +393,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.GButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.GButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.HButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -182,6 +431,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.HButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.HButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.IButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -199,6 +469,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.IButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.IButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.JButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -216,6 +507,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.JButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.JButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.KButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -233,6 +545,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.KButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.KButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.LButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -250,6 +583,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.LButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.LButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.MButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -267,6 +621,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.MButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.MButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.NButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -284,6 +659,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.NButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.NButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.OButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -301,6 +697,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.OButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.OButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.PButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -318,6 +735,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.PButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.PButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.QButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -335,6 +773,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.QButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.QButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.RButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -352,6 +811,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.RButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.RButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.SButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -369,6 +849,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.SButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.SButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.TButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -386,6 +887,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.TButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.TButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.UButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -403,6 +925,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.UButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.UButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.VButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -420,6 +963,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.VButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.VButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.WButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -437,6 +1001,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.WButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.WButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.XButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -454,6 +1039,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.XButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.XButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.YButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -471,6 +1077,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.YButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.YButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         binding.ZButton.setOnClickListener {
             viewModel.word.value?.let { word ->
@@ -488,6 +1115,27 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.ZButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                    viewModel.gameWin(false)
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    it.isEnabled = true
+                    val color = ContextCompat.getColor(requireContext(), R.color.button_color)
+                    ViewCompat.setBackgroundTintList(binding.ZButton, ColorStateList.valueOf(color))
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                    viewModel.gameOver(false)
+                }
+            })
         }
         return binding.root
     }

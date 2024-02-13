@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    tools:ignore="MissingDefaultResource">
+    tools:ignore="MissingDefaultResource"
+    android:background="@color/white">
 
     <!--  hangman and word fragment  -->
     <androidx.fragment.app.FragmentContainerView
@@ -57,6 +58,7 @@
         tools:context=".MainActivity" />
 
     <Button
+        android:id="@+id/new_game"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="174dp"
         android:layout_height="48dp"

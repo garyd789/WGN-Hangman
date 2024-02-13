@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="correct_guess">#04d62e</color>
     <color name="incorrect_guess">#474747</color>
+    <color name="button_color">#b4b8b5</color>
 </resources>
