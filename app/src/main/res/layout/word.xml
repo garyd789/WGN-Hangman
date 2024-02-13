@@ -17,8 +17,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/letter_one"
+        <TextView
+            android:id="@+id/word_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -26,72 +26,14 @@
             android:inputType="none"
             android:focusable="false"
             android:clickable="false"
-            android:cursorVisible="false" />
+            android:layout_gravity="center"
+            android:text="HELLO"
+            android:textAlignment="center"
+            android:textSize="50sp"
+           />
 
-        <EditText
-            android:id="@+id/letter_two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="none"
-            android:focusable="false"
-            android:clickable="false"
-            android:cursorVisible="false"/>
 
-        <EditText
-            android:id="@+id/letter_three"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="none"
-            android:focusable="false"
-            android:clickable="false"
-            android:cursorVisible="false" />
 
-        <EditText
-            android:id="@+id/letter_four"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="none"
-            android:focusable="false"
-            android:clickable="false"
-            android:cursorVisible="false" />
 
-        <EditText
-            android:id="@+id/letter_five"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="none"
-            android:focusable="false"
-            android:clickable="false"
-            android:cursorVisible="false"/>
-
-        <EditText
-            android:id="@+id/letter_six"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="none"
-            android:focusable="false"
-            android:clickable="false"
-            android:cursorVisible="false"/>
-
-        <EditText
-            android:id="@+id/letter_seven"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="none"
-            android:focusable="false"
-            android:clickable="false"
-            android:cursorVisible="false"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
