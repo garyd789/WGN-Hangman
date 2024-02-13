@@ -22,7 +22,6 @@ class WordFragment : Fragment() {
     val hintWords = listOf("GUARDIAN", "Tidy", "SHOOTER", "GREY", "YOUTH", "BOLD", "NIGHT", "FOREVER", "BEGINNING", "HUE", "CULTURE")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -34,23 +33,39 @@ class WordFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
        newGame()
+//        viewModel.newGame()
+
+        // Observe the current word from ViewModel
+        viewModel.word.observe(viewLifecycleOwner, Observer { newWord ->
+            // Update your UI with the new word
+            updateWordUI(newWord)
+        })
 
         // Select a random word from the list after gameover
         viewModel.gameover.observe(viewLifecycleOwner, Observer {gameover ->
             if (gameover) {
-                newGame()
+//                newGame()
+                viewModel.newGame()
                 Log.d("WordFragment", "New word selected")
             }
         })
         viewModel.letter.observe(viewLifecycleOwner, Observer{ char ->
-                        wordGuess = updatePlaceholderStringWithGuess(selectedWord, wordGuess, char)
-                        binding.wordContainer.setText(wordGuess)
+            wordGuess = updatePlaceholderStringWithGuess(selectedWord, wordGuess, char)
+            binding.wordContainer.setText(wordGuess)
+            val currentPlaceholder = binding.wordContainer.text.toString()
+            val updatedPlaceholder = updatePlaceholderStringWithGuess(selectedWord, wordGuess, char)
+            binding.wordContainer.text = updatedPlaceholder
 
         })
 
         return binding.root
     }
 
+    private fun updateWordUI(word: String) {
+        // Here, transform the word into the placeholder format (e.g., "_ _ _ _ _")
+        val placeholder = generateLinesWithSpacesForWord(word)
+        binding.wordContainer.text = placeholder
+    }
 
 
     // Function to replace each character of the word with an underscore followed by a space
@@ -85,6 +100,7 @@ class WordFragment : Fragment() {
         //Restart game
         builder.setPositiveButton("Restart Game") { dialog, which ->
             newGame()
+
         }
         //Close dialog
         builder.setNegativeButton("Cancel", { dialog, which ->
@@ -100,7 +116,6 @@ class WordFragment : Fragment() {
         viewModel.setWord(selectedWord)
         wordGuess = generateLinesWithSpacesForWord(selectedWord)
         binding.wordContainer.setText(wordGuess)
-
     }
 
 

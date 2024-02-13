@@ -18,7 +18,6 @@ class HangmanView(context: Context, attrs: AttributeSet? = null) : View(context,
         style = Paint.Style.STROKE
         strokeWidth = 10f
     }
-
     var incorrectGuesses = -1
         set(value) {
             field = value
