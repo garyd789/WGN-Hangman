@@ -1,56 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:ignore="MissingDefaultResource">
 
-    <!--  hangman fragment  -->
+    <!--  hangman and word fragment  -->
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/hangman_fragment_container"
+        android:id="@+id/hangman_word_fragment_container"
         android:name="com.example.hangman.HangmanFragment"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.85"
+        app:layout_constraintWidth_percent="0.50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.40"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.025"
-        tools:context=".MainActivity" />
-
-    <!--  word fragment  -->
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/word_fragment_container"
-        android:name="com.example.hangman.WordFragment"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="304dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.15"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:context=".MainActivity" />
 
     <!--  letters fragment  -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/letters_fragment_container"
         android:name="com.example.hangman.LettersFragment"
-        android:layout_width="match_parent"
+        android:layout_width="0sp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintWidth_percent="0.50"
+        app:layout_constraintHeight_percent="0.70"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.35"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.873"
         tools:context=".MainActivity" />
 
-    <!--  new game button  -->
+    <!--  hint fragment  -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/hint_fragment_container"
+        android:name="com.example.hangman.WordFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.30"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintWidth_percent="0.50"
+        tools:context=".MainActivity" />
+
     <Button
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
@@ -59,7 +62,9 @@
         app:backgroundTint="#708cb3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/letters_fragment_container" />
+        app:layout_constraintHorizontal_bias="0.813"
+        app:layout_constraintStart_toStartOf="@id/hint_fragment_container"
+        app:layout_constraintTop_toBottomOf="@+id/letters_fragment_container"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
