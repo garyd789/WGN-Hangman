@@ -53,18 +53,18 @@ class HangmanView(context: Context, attrs: AttributeSet? = null) : View(context,
         // short vertical line
         canvas.drawLine(xLeft.toFloat(), yBottom.toFloat(), xLeft.toFloat(), shortLineHeight.toFloat(), paint)
         // testing for the first drawing
-//        // Draw the head - this is (1/2 plus the top)
-//        canvas.drawCircle(xLeft.toFloat(), headYCoor.toFloat(), headRadius.toFloat(), paint)
-//        // Draw the Hangman body
-//        canvas.drawLine(xLeft.toFloat(), bodyYTop.toFloat(), xLeft.toFloat(), bodyYBot.toFloat(), paint)
-//        //  right arm (angled downwards)
-//        canvas.drawLine(xLeft.toFloat(), handYbot.toFloat(), handXRight.toFloat(), handYTop.toFloat(), paint)
-//        // left arm (angled downwards)
-//        canvas.drawLine(xLeft.toFloat(), handYbot.toFloat(), handXLeft.toFloat(), handYTop.toFloat(), paint)
-//        // right leg
-//        canvas.drawLine(xLeft.toFloat(), bodyYTop.toFloat(), handXRight.toFloat(), legYheight.toFloat(), paint)
-//        // left leg
-//        canvas.drawLine(xLeft.toFloat(), bodyYTop.toFloat(), handXLeft.toFloat(), legYheight.toFloat(), paint)
+        // Draw the head - this is (1/2 plus the top)
+        canvas.drawCircle(xLeft.toFloat(), headYCoor.toFloat(), headRadius.toFloat(), paint)
+        // Draw the Hangman body
+        canvas.drawLine(xLeft.toFloat(), bodyYTop.toFloat(), xLeft.toFloat(), bodyYBot.toFloat(), paint)
+        //  right arm (angled downwards)
+        canvas.drawLine(xLeft.toFloat(), handYbot.toFloat(), handXRight.toFloat(), handYTop.toFloat(), paint)
+        // left arm (angled downwards)
+        canvas.drawLine(xLeft.toFloat(), handYbot.toFloat(), handXLeft.toFloat(), handYTop.toFloat(), paint)
+        // right leg
+        canvas.drawLine(xLeft.toFloat(), bodyYTop.toFloat(), handXRight.toFloat(), legYheight.toFloat(), paint)
+        // left leg
+        canvas.drawLine(xLeft.toFloat(), bodyYTop.toFloat(), handXLeft.toFloat(), legYheight.toFloat(), paint)
 
         //Make first mistake
         if (incorrectGuesses >= 1) {
@@ -103,7 +103,7 @@ class HangmanView(context: Context, attrs: AttributeSet? = null) : View(context,
         incorrectGuesses = -1 // Reset the counter to its initial state
         invalidate() // Force the view to redraw from scratch
     }
-        fun setIncorrectGuesses(value: Int) {
-        invalidate() // Redraw the view
-    }
+//        fun setIncorrectGuesses(value: Int) {
+//        invalidate() // Redraw the view
+//    }
 }

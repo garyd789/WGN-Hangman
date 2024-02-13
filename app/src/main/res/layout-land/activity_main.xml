@@ -12,16 +12,16 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/hangman_word_fragment_container"
         android:name="com.example.hangman.HangmanFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.85"
-        app:layout_constraintWidth_percent="0.50"
+        android:layout_width="363dp"
+        android:layout_height="281dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.85"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent="0.50"
         tools:context=".MainActivity" />
 
     <!--  letters fragment  -->
@@ -39,32 +39,53 @@
         tools:context=".MainActivity" />
 
     <!--  hint fragment  -->
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/hint_fragment_container"
         android:name="com.example.hangman.WordFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="363dp"
+        android:layout_height="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.30"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.994"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.926"
         app:layout_constraintWidth_percent="0.50"
         tools:context=".MainActivity" />
 
     <Button
         style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="174dp"
+        android:layout_height="47dp"
         android:text="@string/new_game"
         app:backgroundTint="#708cb3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.813"
+        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="@id/hint_fragment_container"
         app:layout_constraintTop_toBottomOf="@+id/letters_fragment_container"
         app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        style="@style/Widget.AppCompat.Button"
+        android:id="@+id/hintButton"
+        android:layout_width="89dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="56dp"
+        android:text="Hint"
+        app:backgroundTint="#708cb3"
+        app:layout_constraintTop_toBottomOf="@+id/letters_fragment_container"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/HintText"
+        android:layout_width="189dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="56dp"
+        android:text="HintText"
+        app:layout_constraintTop_toBottomOf="@+id/letters_fragment_container"
+        tools:layout_editor_absoluteX="105dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
