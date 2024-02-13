@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.hangman.databinding.LettersBinding
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
+import androidx.lifecycle.Observer
 
 
 class LettersFragment : Fragment() {
@@ -27,8 +28,8 @@ class LettersFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding =
-            LettersBinding.inflate(layoutInflater, container, false)
+        binding = LettersBinding.inflate(layoutInflater, container, false)
+        viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
         //set listeners on each letter
         binding.AButton.setOnClickListener {
@@ -39,8 +40,7 @@ class LettersFragment : Fragment() {
                     viewModel.guessRight('A')
                     Log.d("LettersFragment", "Contains A")
 
-                }
-                else {
+                } else {
                     val color = ContextCompat.getColor(requireContext(), R.color.incorrect_guess)
                     ViewCompat.setBackgroundTintList(binding.AButton, ColorStateList.valueOf(color))
                     viewModel.guessWrong('A')
@@ -48,6 +48,19 @@ class LettersFragment : Fragment() {
                 }
                 it.isEnabled = false
             }
+            viewModel.gamewin.observe(viewLifecycleOwner, Observer { gamewin ->
+                if (gamewin) {
+                    //reset buttons here
+                    Log.d("LettersFragment", "Reset Button, gamewin")
+                }
+            })
+
+            viewModel.gameover.observe(viewLifecycleOwner, Observer { gameover ->
+                if (gameover) {
+                    //reset buttons here
+                    Log.d("LettersFragment", "Reset Button, gameover")
+                }
+            })
         }
 
         binding.BButton.setOnClickListener {
