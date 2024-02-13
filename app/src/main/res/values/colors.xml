@@ -3,5 +3,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="correct_guess">#04d62e</color>
-    <color name="wrong_guess">#343835</color>
+    <color name="incorrect_guess">#474747</color>
 </resources>
