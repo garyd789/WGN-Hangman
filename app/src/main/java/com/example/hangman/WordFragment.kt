@@ -18,6 +18,7 @@ class WordFragment : Fragment() {
     private lateinit var viewModel: SharedViewModel
     private lateinit var selectedWord: String
     private lateinit var wordGuess: String
+
     val words = listOf("PARENT", "CLEAN", "ARCHER", "ANTIHERO", "FIFTEEN", "FEARLESS", "MIDNIGHT", "EVERMORE", "DEBUT", "RED", "FOLKLORE")
     val hintWords = listOf("GUARDIAN", "Tidy", "SHOOTER", "GREY", "YOUTH", "BOLD", "NIGHT", "FOREVER", "BEGINNING", "HUE", "CULTURE")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +34,7 @@ class WordFragment : Fragment() {
         binding = WordBinding.inflate(layoutInflater, container, false)
         viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
+
         newGame()
 
         // Select a random word from the list after gameover
@@ -45,7 +47,6 @@ class WordFragment : Fragment() {
         viewModel.letter.observe(viewLifecycleOwner, Observer{ char ->
             wordGuess = updatePlaceholderStringWithGuess(selectedWord, wordGuess, char)
             binding.wordContainer.setText(wordGuess)
-
         })
 
         return binding.root
@@ -94,7 +95,8 @@ class WordFragment : Fragment() {
         builder.create().show()
     }
 
-    fun newGame(){
+   fun newGame(){
+        Log.d("WordFragment", "New Game created")
         viewModel.gameWin(true)
         selectedWord = words[Random.nextInt(words.size)]
         viewModel.setWord(selectedWord)

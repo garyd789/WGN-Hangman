@@ -42,7 +42,7 @@
 
     <!--  word fragment  -->
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/hint_fragment_container"
+        android:id="@+id/word_fragment_container"
         android:name="com.example.hangman.WordFragment"
         android:layout_height="0dp"
         android:layout_width="0dp"

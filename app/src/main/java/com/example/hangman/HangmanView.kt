@@ -9,7 +9,6 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
-//import com.example.hangman.databinding.WordBinding
 
 class HangmanView(context: Context, attrs: AttributeSet? = null) : View(context, attrs) {
     private lateinit var viewModel: SharedViewModel

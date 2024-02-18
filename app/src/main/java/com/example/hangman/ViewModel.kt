@@ -18,6 +18,10 @@ class SharedViewModel : ViewModel() {
     val guess: LiveData<Boolean> = _guess
 
 
+    //boolean for first game
+    private val _first = MutableLiveData<Boolean>()
+    val first: LiveData<Boolean> = _first
+
     //variable used to pass along letters
     private val _letter = MutableLiveData<Char>()
     val letter: LiveData<Char> = _letter
@@ -72,6 +76,7 @@ class SharedViewModel : ViewModel() {
     fun resetIncorrect(){
         _incorrect.value = 0
     }
+
 
 
 }
